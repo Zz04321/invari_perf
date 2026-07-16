@@ -70,6 +70,81 @@ document.addEventListener("click", (event) => {
   toolStepCode.textContent = item.code;
 });
 
+const sweperfParts = {
+  input: {
+    kicker: "Task input",
+    title: "Agent 看到的是一个真实仓库任务",
+    text:
+      "对 astropy__astropy-16058，任务输入包含仓库、性能优化描述、可能相关的目标函数和官方性能测试。Agent 不会直接拿到“正确补丁”。",
+    code: `{
+  "repo": "astropy/astropy",
+  "instance_id": "astropy__astropy-16058",
+  "target_functions": [
+    "CompositeUnit.__init__",
+    "validate_power",
+    "maybe_simple_fraction"
+  ]
+}`,
+  },
+  patch: {
+    kicker: "Agent output",
+    title: "Agent 要交的是 patch，不是文字解释",
+    text:
+      "SWE-Perf 会把 agent 生成的代码修改真正应用到仓库里。也就是说，agent 的输出必须能落到真实代码上，而不是只给一个优化建议。",
+    code: `diff --git a/astropy/units/utils.py b/astropy/units/utils.py
+
+def validate_power(p):
+    if p.__class__ is int:
+        return p
+    ...
+
+def sanitize_power(p):
+    return maybe_simple_fraction(p)`,
+  },
+  eval: {
+    kicker: "Official evaluation",
+    title: "官方评估同时看正确性和性能",
+    text:
+      "一个 patch 先要能 apply，再通过正确性测试，最后才比较性能测试耗时。性能变快但测试失败，不能算成功。",
+    code: `Evaluation checklist:
+  1. patch applies
+  2. correctness tests pass
+  3. performance test improves
+
+Example:
+  0.01084s -> 0.01001s
+  relative improvement: 7.67%`,
+  },
+  bridge: {
+    kicker: "Why Daikon",
+    title: "SWE-Perf 只告诉我们快不快，不解释为什么安全",
+    text:
+      "这就是 Daikon 介入的位置：它从运行轨迹里挖出输入/输出关系，帮助 agent 看到“哪些路径可能可以更便宜”，同时提醒它保留兜底逻辑。",
+    code: `Daikon evidence:
+  arg0_is_int <= result_is_same_as_arg0
+
+Agent hint:
+  if input is a simple int, consider returning it directly
+  otherwise keep the original slow path`,
+  },
+};
+
+document.addEventListener("click", (event) => {
+  const button = event.target.closest(".explorer-tab");
+  if (!button) return;
+  const item = sweperfParts[button.dataset.sweperfPart];
+  if (!item) return;
+
+  for (const other of document.querySelectorAll(".explorer-tab")) {
+    other.classList.toggle("is-active", other === button);
+  }
+
+  document.querySelector("#sweperf-panel-kicker").textContent = item.kicker;
+  document.querySelector("#sweperf-panel-title").textContent = item.title;
+  document.querySelector("#sweperf-panel-text").textContent = item.text;
+  document.querySelector("#sweperf-panel-code code").textContent = item.code;
+});
+
 const daikonButton = document.querySelector("#run-daikon");
 const daikonResult = document.querySelector("#daikon-result");
 

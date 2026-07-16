@@ -102,6 +102,51 @@
   "performance_test": "official performance test"
 }</code></pre>
         </div>
+
+        <div class="sweperf-explorer">
+          <div class="inline-heading">
+            <div>
+              <p class="mini-title">Interactive</p>
+              <h3>拆开看一个 SWE-Perf 任务</h3>
+            </div>
+            <span class="play-hint">点击左侧按钮</span>
+          </div>
+
+          <div class="explorer-grid">
+            <div class="explorer-tabs" aria-label="SWE-Perf task parts">
+              <button class="explorer-tab is-active" data-sweperf-part="input" type="button">
+                Agent 拿到什么
+              </button>
+              <button class="explorer-tab" data-sweperf-part="patch" type="button">
+                Agent 交什么
+              </button>
+              <button class="explorer-tab" data-sweperf-part="eval" type="button">
+                官方怎么判
+              </button>
+              <button class="explorer-tab" data-sweperf-part="bridge" type="button">
+                为什么接 Daikon
+              </button>
+            </div>
+
+            <article class="explorer-panel">
+              <p id="sweperf-panel-kicker" class="mini-title">Task input</p>
+              <h3 id="sweperf-panel-title">Agent 看到的是一个真实仓库任务</h3>
+              <p id="sweperf-panel-text">
+                对 <code>astropy__astropy-16058</code>，任务输入包含仓库、性能优化描述、
+                可能相关的目标函数和官方性能测试。Agent 不会直接拿到“正确补丁”。
+              </p>
+              <pre id="sweperf-panel-code"><code>{
+  "repo": "astropy/astropy",
+  "instance_id": "astropy__astropy-16058",
+  "target_functions": [
+    "CompositeUnit.__init__",
+    "validate_power",
+    "maybe_simple_fraction"
+  ]
+}</code></pre>
+            </article>
+          </div>
+        </div>
       </section>
 
       <section id="invariant" class="section">
