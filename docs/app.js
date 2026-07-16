@@ -145,6 +145,55 @@ document.addEventListener("click", (event) => {
   document.querySelector("#sweperf-panel-code code").textContent = item.code;
 });
 
+const patchViews = {
+  baseline: {
+    caption:
+      "Baseline 仍然在 validate_power 内部做规范化，只是加了一些局部 shortcut。",
+    code: `# Baseline: validate_power 里仍然继续做规范化
+def validate_power(p):
+    if p.__class__ is int:
+        return p
+
+    # 后面仍然会把 float / Fraction / Rational 做规范化
+    denom = getattr(p, "denominator", None)
+    if denom is None:
+        p = maybe_simple_fraction(p)
+    ...`,
+  },
+  daikon: {
+    caption:
+      "Daikon skill 后的补丁把轻量检查和规范化拆开，只有真正需要规范化时才调用 sanitize_power。",
+    code: `# Codex + Daikon skill: validate_power 只负责检查
+def validate_power(p):
+    if p.__class__ is int or p.__class__ is Fraction:
+        return p
+    float(p)   # 只确认它能作为 power
+    ...
+    return p
+
+# 规范化被移到真正需要存储/合并 power 的地方
+def sanitize_power(p):
+    p = maybe_simple_fraction(p)
+    ...`,
+  },
+};
+
+document.addEventListener("click", (event) => {
+  const button = event.target.closest(".patch-tab");
+  if (!button) return;
+  const item = patchViews[button.dataset.patchView];
+  if (!item) return;
+
+  for (const other of document.querySelectorAll(".patch-tab")) {
+    other.classList.toggle("is-active", other === button);
+  }
+
+  const caption = document.querySelector("#patch-caption");
+  const code = document.querySelector("#patch-code code");
+  if (caption) caption.textContent = item.caption;
+  if (code) code.textContent = item.code;
+});
+
 const daikonButton = document.querySelector("#run-daikon");
 const daikonResult = document.querySelector("#daikon-result");
 

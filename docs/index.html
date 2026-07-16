@@ -467,11 +467,14 @@ Repair hint:
         <div class="compare">
           <article class="card">
             <h3>Baseline Codex</h3>
-            <p>只给官方 SWE-Perf 任务提示，不加 Daikon 证据。</p>
+            <p>只给官方 SWE-Perf 任务提示，不加 Daikon 证据。它也能找到一些局部优化。</p>
             <ul>
               <li>补丁应用 / 测试运行 / 任务成功：<strong>yes</strong></li>
               <li>Mean duration: <code>0.01084s -> 0.01001s</code></li>
               <li>Relative improvement: <strong>7.67%</strong></li>
+              <li>给 <code>validate_power</code> 加了 <code>int</code> 直接返回。</li>
+              <li>给 <code>maybe_simple_fraction</code> 加了更早的 float 分支。</li>
+              <li>在 <code>CompositeUnit</code> 里做了局部循环和空列表 shortcut。</li>
             </ul>
           </article>
 
@@ -482,8 +485,17 @@ Repair hint:
               <li>补丁应用 / 测试运行 / 任务成功：<strong>yes</strong></li>
               <li>Mean duration: <code>0.00820s -> 0.00741s</code></li>
               <li>Relative improvement: <strong>9.61%</strong></li>
+              <li>把 <code>validate_power</code> 改成只做轻量检查。</li>
+              <li>新增 <code>sanitize_power</code>，只在需要规范化表示时调用。</li>
+              <li>保留复杂输入的完整处理路径，不把 fast path 当成全局替换。</li>
             </ul>
           </article>
+        </div>
+
+        <div class="note">
+          Baseline 的补丁更像“看到哪里慢就局部减少一点工作”。
+          Daikon skill 后的补丁更像“先从运行中观察到一个条件，再把便宜路径限制在这个条件下”。
+          一次运行里的性能数字只是旁证；更关键的是补丁结构从局部小改变成了带条件的语义改写。
         </div>
 
         <div class="note">
@@ -501,32 +513,61 @@ Repair hint:
 
         <div class="explain">
           <div class="inline-heading">
-            <h3>Codex + Daikon skill 的补丁形态</h3>
+            <h3>补丁形态对比</h3>
             <button class="small-button" data-reveal="patch-meaning" type="button">
               查看结构
             </button>
           </div>
           <p>
-            它不是简单删除逻辑，而是把一个混合职责函数拆成“快路径”和“慢路径”。
+            这两个补丁表面上都有 shortcut，但语义不同：Baseline 仍然让
+            <code>validate_power</code> 同时负责“检查输入”和“规范化表示”；
+            Daikon skill 后的补丁把这两个职责拆开。
           </p>
-          <pre><code>def validate_power(p):
-    # 快路径：只做轻量检查
-    if p.__class__ is int or p.__class__ is Fraction:
+          <div class="patch-switcher">
+            <div class="patch-tabs" aria-label="Patch comparison">
+              <button class="patch-tab is-active" data-patch-view="baseline" type="button">
+                Baseline patch
+              </button>
+              <button class="patch-tab" data-patch-view="daikon" type="button">
+                Daikon skill patch
+              </button>
+            </div>
+            <div class="patch-panel">
+              <p id="patch-caption">
+                Baseline 仍然在 <code>validate_power</code> 内部做规范化，只是加了一些局部 shortcut。
+              </p>
+              <pre id="patch-code"><code># Baseline: validate_power 里仍然继续做规范化
+def validate_power(p):
+    if p.__class__ is int:
         return p
-    ...
-    return p
 
-def sanitize_power(p):
-    # 慢路径：需要规范化表示时再做
-    p = maybe_simple_fraction(p)
+    # 后面仍然会把 float / Fraction / Rational 做规范化
+    denom = getattr(p, "denominator", None)
+    if denom is None:
+        p = maybe_simple_fraction(p)
     ...</code></pre>
+            </div>
+          </div>
           <p>
             然后只在真正需要“规范化幂次表示”的地方调用
             <code>sanitize_power</code>。
           </p>
+          <p>
+            所以它相对 Baseline 的潜在性能收益是：很多调用点只是想确认
+            <code>power</code> 合法，并不马上需要把它变成最简分数。
+            这些路径可以跳过 <code>maybe_simple_fraction</code> 这种较贵的规范化步骤；
+            只有在存储、合并或排序单位幂次时，才付出规范化成本。
+          </p>
+          <p>
+            它和 Daikon 证据的关系是间接的：Daikon 观察到
+            <code>validate_power</code> 的常见输入类型、返回值是否保持原样，以及
+            <code>maybe_simple_fraction</code> 只在少数数值形态上被反复调用。
+            这些证据不会自动推出“必须新增 <code>sanitize_power</code>”，但会提示 agent：
+            有些路径只需要检查，有些路径才需要规范化。
+          </p>
           <div id="patch-meaning" class="reveal-box is-hidden">
-            这正好对应性能浪费的结构：常见输入走更便宜的分支；
-            不确定的输入继续走完整处理逻辑。
+            性能优化不是因为“多拆了一个函数”，而是因为常见路径少做了原本不必要的规范化工作；
+            复杂路径仍然保留完整处理逻辑。
           </div>
         </div>
       </section>
