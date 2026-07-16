@@ -1,0 +1,245 @@
+{
+  "task_id": "astropy__astropy-13496",
+  "trace_source": "official SWE-Perf Docker image, base commit, official efficiency test execution",
+  "prediction_label": null,
+  "trace_target_source": "patch-functions",
+  "trace_targets": {
+    "astropy.units.core": [
+      "UnitBase.__getstate__",
+      "UnitBase._get_physical_type_id"
+    ]
+  },
+  "runtime_trace_rows": 2632176,
+  "deduplicated_trace_rows": 38,
+  "efficiency_test": [
+    "astropy/coordinates/tests/test_sky_coord.py::test_coord_init_unit",
+    "astropy/coordinates/tests/test_spectral_coordinate.py::test_create_from_spectral_coord[observer4-target2]",
+    "astropy/units/tests/test_units.py::test_complex_compose"
+  ],
+  "artifacts": {
+    "runtime_trace": "experiments/swe_perf_pilot/results/daikon_real_trace/astropy__astropy-13496/runtime_trace.jsonl",
+    "decls": "experiments/swe_perf_pilot/results/daikon_real_trace/astropy__astropy-13496/real_trace.decls",
+    "dtrace": "experiments/swe_perf_pilot/results/daikon_real_trace/astropy__astropy-13496/real_trace.dtrace",
+    "daikon_output": "experiments/swe_perf_pilot/results/daikon_real_trace/astropy__astropy-13496/daikon_output.txt"
+  },
+  "likely_invariants_by_program_point": {
+    "astropy.units.core.UnitBase._get_physical_type_id.return:::POINT": [
+      "arg0_float == arg0_is_float",
+      "arg0_float == arg1_float",
+      "arg0_is_bool == arg0_is_int",
+      "arg0_is_bool == arg0_is_none",
+      "arg0_is_bool == arg1_truth",
+      "arg0_is_bool == kwarg_count",
+      "arg0_is_bool == raised",
+      "arg0_is_bool == result_is_none",
+      "arg0_is_bool == result_is_same_as_arg0",
+      "arg0_len == arg0_ndim",
+      "arg0_len == arg0_shape_len",
+      "arg0_len == arg0_size",
+      "arg0_len == arg1_len",
+      "arg0_len == arg1_ndim",
+      "arg0_len == arg1_shape_len",
+      "arg0_len == arg1_size",
+      "arg0_len == result_ndim",
+      "arg0_truth == arg1_is_none",
+      "arg0_truth == arg_count",
+      "result_len == result_size",
+      "arg0_float == 0.0",
+      "arg0_is_bool == 0",
+      "arg0_len == -1",
+      "arg0_truth == 1",
+      "arg0_is_bool <= result_len",
+      "arg0_len < result_len"
+    ],
+    "astropy.units.core._get_physical_type_id.return:::POINT": [
+      "arg0_float == arg0_is_float",
+      "arg0_float == arg1_float",
+      "arg0_is_bool == arg0_is_int",
+      "arg0_is_bool == arg0_is_none",
+      "arg0_is_bool == arg1_truth",
+      "arg0_is_bool == kwarg_count",
+      "arg0_is_bool == raised",
+      "arg0_is_bool == result_is_none",
+      "arg0_is_bool == result_is_same_as_arg0",
+      "arg0_len == arg0_ndim",
+      "arg0_len == arg0_shape_len",
+      "arg0_len == arg0_size",
+      "arg0_len == arg1_len",
+      "arg0_len == arg1_ndim",
+      "arg0_len == arg1_shape_len",
+      "arg0_len == arg1_size",
+      "arg0_len == result_ndim",
+      "arg0_truth == arg1_is_none",
+      "arg0_truth == arg_count",
+      "result_len == result_size",
+      "arg0_float == 0.0",
+      "arg0_is_bool == 0",
+      "arg0_len == -1",
+      "arg0_truth == 1",
+      "arg0_is_bool <= result_len",
+      "arg0_len < result_len"
+    ]
+  },
+  "agent_context_candidates": [
+    {
+      "program_point": "astropy.units.core.UnitBase._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_float == arg0_is_float"
+    },
+    {
+      "program_point": "astropy.units.core.UnitBase._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_float == arg1_float"
+    },
+    {
+      "program_point": "astropy.units.core.UnitBase._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_is_bool == arg0_is_int"
+    },
+    {
+      "program_point": "astropy.units.core.UnitBase._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_is_bool == arg0_is_none"
+    },
+    {
+      "program_point": "astropy.units.core.UnitBase._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_is_bool == arg1_truth"
+    },
+    {
+      "program_point": "astropy.units.core.UnitBase._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_is_bool == kwarg_count"
+    },
+    {
+      "program_point": "astropy.units.core.UnitBase._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_is_bool == raised"
+    },
+    {
+      "program_point": "astropy.units.core.UnitBase._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_is_bool == result_is_none"
+    },
+    {
+      "program_point": "astropy.units.core.UnitBase._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_is_bool == result_is_same_as_arg0"
+    },
+    {
+      "program_point": "astropy.units.core.UnitBase._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_len == arg0_ndim"
+    },
+    {
+      "program_point": "astropy.units.core.UnitBase._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_len == arg0_shape_len"
+    },
+    {
+      "program_point": "astropy.units.core.UnitBase._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_len == arg0_size"
+    },
+    {
+      "program_point": "astropy.units.core.UnitBase._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_len == arg1_len"
+    },
+    {
+      "program_point": "astropy.units.core.UnitBase._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_len == arg1_ndim"
+    },
+    {
+      "program_point": "astropy.units.core.UnitBase._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_len == arg1_shape_len"
+    },
+    {
+      "program_point": "astropy.units.core.UnitBase._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_len == arg1_size"
+    },
+    {
+      "program_point": "astropy.units.core.UnitBase._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_len == result_ndim"
+    },
+    {
+      "program_point": "astropy.units.core.UnitBase._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_truth == arg1_is_none"
+    },
+    {
+      "program_point": "astropy.units.core.UnitBase._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_truth == arg_count"
+    },
+    {
+      "program_point": "astropy.units.core.UnitBase._get_physical_type_id.return:::POINT",
+      "likely_invariant": "result_len == result_size"
+    },
+    {
+      "program_point": "astropy.units.core.UnitBase._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_float == 0.0"
+    },
+    {
+      "program_point": "astropy.units.core.UnitBase._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_is_bool == 0"
+    },
+    {
+      "program_point": "astropy.units.core.UnitBase._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_len == -1"
+    },
+    {
+      "program_point": "astropy.units.core.UnitBase._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_truth == 1"
+    },
+    {
+      "program_point": "astropy.units.core.UnitBase._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_is_bool <= result_len"
+    },
+    {
+      "program_point": "astropy.units.core._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_float == arg0_is_float"
+    },
+    {
+      "program_point": "astropy.units.core._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_float == arg1_float"
+    },
+    {
+      "program_point": "astropy.units.core._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_is_bool == arg0_is_int"
+    },
+    {
+      "program_point": "astropy.units.core._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_is_bool == arg0_is_none"
+    },
+    {
+      "program_point": "astropy.units.core._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_is_bool == arg1_truth"
+    },
+    {
+      "program_point": "astropy.units.core._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_is_bool == kwarg_count"
+    },
+    {
+      "program_point": "astropy.units.core._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_is_bool == raised"
+    },
+    {
+      "program_point": "astropy.units.core._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_is_bool == result_is_none"
+    },
+    {
+      "program_point": "astropy.units.core._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_is_bool == result_is_same_as_arg0"
+    },
+    {
+      "program_point": "astropy.units.core._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_len == arg0_ndim"
+    },
+    {
+      "program_point": "astropy.units.core._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_len == arg0_shape_len"
+    },
+    {
+      "program_point": "astropy.units.core._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_len == arg0_size"
+    },
+    {
+      "program_point": "astropy.units.core._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_len == arg1_len"
+    },
+    {
+      "program_point": "astropy.units.core._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_len == arg1_ndim"
+    },
+    {
+      "program_point": "astropy.units.core._get_physical_type_id.return:::POINT",
+      "likely_invariant": "arg0_len == arg1_shape_len"
+    }
+  ]
+}

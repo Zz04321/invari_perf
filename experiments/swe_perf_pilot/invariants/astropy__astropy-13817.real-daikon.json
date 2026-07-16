@@ -1,0 +1,165 @@
+{
+  "task_id": "astropy__astropy-13817",
+  "trace_source": "official SWE-Perf Docker image, base commit, official efficiency test execution",
+  "prediction_label": null,
+  "trace_target_source": "patch-modules",
+  "trace_targets": {
+    "astropy.io.misc.asdf.connect": [
+      "asdf_identify"
+    ],
+    "astropy.modeling.functional_models": [
+      "Voigt1D.evaluate",
+      "Voigt1D.__init__",
+      "Voigt1D.fit_deriv",
+      "Voigt1D._hum2zpf16c"
+    ],
+    "astropy.stats.jackknife": [
+      "jackknife_resampling"
+    ],
+    "astropy.wcs.wcs": [
+      "WCS.reorient_celestial_first"
+    ]
+  },
+  "runtime_trace_rows": 23,
+  "deduplicated_trace_rows": 1,
+  "efficiency_test": [
+    "astropy/timeseries/periodograms/lombscargle/tests/test_statistics.py::test_distribution[True-True-model]"
+  ],
+  "artifacts": {
+    "runtime_trace": "experiments/swe_perf_pilot/results/daikon_real_trace/astropy__astropy-13817/runtime_trace.jsonl",
+    "decls": "experiments/swe_perf_pilot/results/daikon_real_trace/astropy__astropy-13817/real_trace.decls",
+    "dtrace": "experiments/swe_perf_pilot/results/daikon_real_trace/astropy__astropy-13817/real_trace.dtrace",
+    "daikon_output": "experiments/swe_perf_pilot/results/daikon_real_trace/astropy__astropy-13817/daikon_output.txt"
+  },
+  "likely_invariants_by_program_point": {
+    "astropy.io.misc.asdf.connect.<module>.return:::POINT": [
+      "arg0_float == arg0_is_float",
+      "arg0_float == arg1_float",
+      "arg0_is_bool == arg0_is_int",
+      "arg0_is_bool == arg0_truth",
+      "arg0_is_bool == arg1_truth",
+      "arg0_is_bool == arg_count",
+      "arg0_is_bool == kwarg_count",
+      "arg0_is_bool == raised",
+      "arg0_is_none == arg1_is_none",
+      "arg0_is_none == result_is_none",
+      "arg0_is_none == result_is_same_as_arg0",
+      "arg0_len == arg0_ndim",
+      "arg0_len == arg0_shape_len",
+      "arg0_len == arg0_size",
+      "arg0_len == arg1_len",
+      "arg0_len == arg1_ndim",
+      "arg0_len == arg1_shape_len",
+      "arg0_len == arg1_size",
+      "arg0_len == result_len",
+      "arg0_len == result_ndim",
+      "arg0_len == result_size",
+      "arg0_float == 0.0",
+      "arg0_is_bool == 0",
+      "arg0_is_none == 1",
+      "arg0_len == -1"
+    ]
+  },
+  "agent_context_candidates": [
+    {
+      "program_point": "astropy.io.misc.asdf.connect.<module>.return:::POINT",
+      "likely_invariant": "arg0_float == arg0_is_float"
+    },
+    {
+      "program_point": "astropy.io.misc.asdf.connect.<module>.return:::POINT",
+      "likely_invariant": "arg0_float == arg1_float"
+    },
+    {
+      "program_point": "astropy.io.misc.asdf.connect.<module>.return:::POINT",
+      "likely_invariant": "arg0_is_bool == arg0_is_int"
+    },
+    {
+      "program_point": "astropy.io.misc.asdf.connect.<module>.return:::POINT",
+      "likely_invariant": "arg0_is_bool == arg0_truth"
+    },
+    {
+      "program_point": "astropy.io.misc.asdf.connect.<module>.return:::POINT",
+      "likely_invariant": "arg0_is_bool == arg1_truth"
+    },
+    {
+      "program_point": "astropy.io.misc.asdf.connect.<module>.return:::POINT",
+      "likely_invariant": "arg0_is_bool == arg_count"
+    },
+    {
+      "program_point": "astropy.io.misc.asdf.connect.<module>.return:::POINT",
+      "likely_invariant": "arg0_is_bool == kwarg_count"
+    },
+    {
+      "program_point": "astropy.io.misc.asdf.connect.<module>.return:::POINT",
+      "likely_invariant": "arg0_is_bool == raised"
+    },
+    {
+      "program_point": "astropy.io.misc.asdf.connect.<module>.return:::POINT",
+      "likely_invariant": "arg0_is_none == arg1_is_none"
+    },
+    {
+      "program_point": "astropy.io.misc.asdf.connect.<module>.return:::POINT",
+      "likely_invariant": "arg0_is_none == result_is_none"
+    },
+    {
+      "program_point": "astropy.io.misc.asdf.connect.<module>.return:::POINT",
+      "likely_invariant": "arg0_is_none == result_is_same_as_arg0"
+    },
+    {
+      "program_point": "astropy.io.misc.asdf.connect.<module>.return:::POINT",
+      "likely_invariant": "arg0_len == arg0_ndim"
+    },
+    {
+      "program_point": "astropy.io.misc.asdf.connect.<module>.return:::POINT",
+      "likely_invariant": "arg0_len == arg0_shape_len"
+    },
+    {
+      "program_point": "astropy.io.misc.asdf.connect.<module>.return:::POINT",
+      "likely_invariant": "arg0_len == arg0_size"
+    },
+    {
+      "program_point": "astropy.io.misc.asdf.connect.<module>.return:::POINT",
+      "likely_invariant": "arg0_len == arg1_len"
+    },
+    {
+      "program_point": "astropy.io.misc.asdf.connect.<module>.return:::POINT",
+      "likely_invariant": "arg0_len == arg1_ndim"
+    },
+    {
+      "program_point": "astropy.io.misc.asdf.connect.<module>.return:::POINT",
+      "likely_invariant": "arg0_len == arg1_shape_len"
+    },
+    {
+      "program_point": "astropy.io.misc.asdf.connect.<module>.return:::POINT",
+      "likely_invariant": "arg0_len == arg1_size"
+    },
+    {
+      "program_point": "astropy.io.misc.asdf.connect.<module>.return:::POINT",
+      "likely_invariant": "arg0_len == result_len"
+    },
+    {
+      "program_point": "astropy.io.misc.asdf.connect.<module>.return:::POINT",
+      "likely_invariant": "arg0_len == result_ndim"
+    },
+    {
+      "program_point": "astropy.io.misc.asdf.connect.<module>.return:::POINT",
+      "likely_invariant": "arg0_len == result_size"
+    },
+    {
+      "program_point": "astropy.io.misc.asdf.connect.<module>.return:::POINT",
+      "likely_invariant": "arg0_float == 0.0"
+    },
+    {
+      "program_point": "astropy.io.misc.asdf.connect.<module>.return:::POINT",
+      "likely_invariant": "arg0_is_bool == 0"
+    },
+    {
+      "program_point": "astropy.io.misc.asdf.connect.<module>.return:::POINT",
+      "likely_invariant": "arg0_is_none == 1"
+    },
+    {
+      "program_point": "astropy.io.misc.asdf.connect.<module>.return:::POINT",
+      "likely_invariant": "arg0_len == -1"
+    }
+  ]
+}

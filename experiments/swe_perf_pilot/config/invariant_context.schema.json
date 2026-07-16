@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Invariant Context",
+  "type": "object",
+  "required": ["task_id", "invariants"],
+  "properties": {
+    "task_id": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string",
+      "description": "Where the invariants came from, such as manual, Daikon, CrossHair, tests, or FM-Agent-style extraction."
+    },
+    "invariants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "kind", "scope", "statement", "confidence"],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string",
+            "description": "Examples: encoding, constructor_projector, predicate_equivalence, shape, cache_consistency, monotonicity."
+          },
+          "scope": {
+            "type": "string",
+            "description": "Function, class, module, or path where the invariant is expected to hold."
+          },
+          "statement": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["type", "detail"],
+              "properties": {
+                "type": {
+                  "type": "string"
+                },
+                "path": {
+                  "type": "string"
+                },
+                "detail": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "risk_boundary": {
+            "type": "string",
+            "description": "Inputs or paths where using this invariant incorrectly can break semantics."
+          },
+          "confidence": {
+            "type": "string",
+            "enum": ["candidate", "checked", "trusted"]
+          }
+        }
+      }
+    }
+  }
+}

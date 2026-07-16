@@ -1,0 +1,240 @@
+{
+  "task_id": "astropy__astropy-13745",
+  "trace_source": "official SWE-Perf Docker image, base commit, official efficiency test execution",
+  "prediction_label": null,
+  "trace_target_source": "patch-functions",
+  "trace_targets": {
+    "astropy.coordinates.angles": [
+      "Latitude._validate_angles"
+    ]
+  },
+  "runtime_trace_rows": 644,
+  "deduplicated_trace_rows": 4,
+  "efficiency_test": [
+    "astropy/table/tests/test_operations.py::TestHStack::test_stack_basic[Table]"
+  ],
+  "artifacts": {
+    "runtime_trace": "experiments/swe_perf_pilot/results/daikon_real_trace/astropy__astropy-13745/runtime_trace.jsonl",
+    "decls": "experiments/swe_perf_pilot/results/daikon_real_trace/astropy__astropy-13745/real_trace.decls",
+    "dtrace": "experiments/swe_perf_pilot/results/daikon_real_trace/astropy__astropy-13745/real_trace.dtrace",
+    "daikon_output": "experiments/swe_perf_pilot/results/daikon_real_trace/astropy__astropy-13745/daikon_output.txt"
+  },
+  "likely_invariants_by_program_point": {
+    "astropy.coordinates.angles.Latitude._validate_angles.return:::POINT": [
+      "arg0_float == arg0_is_float",
+      "arg0_float == arg1_float",
+      "arg0_is_bool == arg0_is_int",
+      "arg0_is_bool == arg0_is_none",
+      "arg0_is_bool == arg1_truth",
+      "arg0_is_bool == kwarg_count",
+      "arg0_is_bool == raised",
+      "arg0_is_bool == result_is_same_as_arg0",
+      "arg0_ndim == arg0_shape_len",
+      "arg0_truth == arg1_len",
+      "arg0_truth == arg1_ndim",
+      "arg0_truth == arg1_shape_len",
+      "arg0_truth == arg1_size",
+      "arg0_truth == result_len",
+      "arg0_truth == result_ndim",
+      "arg0_truth == result_size",
+      "arg1_is_none == arg_count",
+      "arg1_is_none == result_is_none",
+      "arg0_float == 0.0",
+      "arg0_is_bool == 0",
+      "arg0_len one of { -1, 4 }",
+      "arg0_ndim one of { 0, 1 }",
+      "arg0_size one of { 1, 4 }",
+      "arg0_truth == -1",
+      "arg1_is_none == 1"
+    ],
+    "astropy.coordinates.angles._validate_angles.return:::POINT": [
+      "arg0_float == arg0_is_float",
+      "arg0_float == arg1_float",
+      "arg0_is_bool == arg0_is_int",
+      "arg0_is_bool == arg0_is_none",
+      "arg0_is_bool == arg1_is_none",
+      "arg0_is_bool == kwarg_count",
+      "arg0_is_bool == raised",
+      "arg0_is_bool == result_is_same_as_arg0",
+      "arg0_len == arg1_len",
+      "arg0_ndim == arg0_shape_len",
+      "arg0_ndim == arg1_ndim",
+      "arg0_ndim == arg1_shape_len",
+      "arg0_size == arg1_size",
+      "arg0_truth == arg1_truth",
+      "arg0_truth == result_len",
+      "arg0_truth == result_ndim",
+      "arg0_truth == result_size",
+      "arg0_float == 0.0",
+      "arg0_is_bool == 0",
+      "arg0_len one of { -1, 4 }",
+      "arg0_ndim one of { 0, 1 }",
+      "arg0_size one of { 1, 4 }",
+      "arg0_truth == -1",
+      "arg_count == 2",
+      "result_is_none == 1"
+    ]
+  },
+  "agent_context_candidates": [
+    {
+      "program_point": "astropy.coordinates.angles.Latitude._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_float == arg0_is_float"
+    },
+    {
+      "program_point": "astropy.coordinates.angles.Latitude._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_float == arg1_float"
+    },
+    {
+      "program_point": "astropy.coordinates.angles.Latitude._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_is_bool == arg0_is_int"
+    },
+    {
+      "program_point": "astropy.coordinates.angles.Latitude._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_is_bool == arg0_is_none"
+    },
+    {
+      "program_point": "astropy.coordinates.angles.Latitude._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_is_bool == arg1_truth"
+    },
+    {
+      "program_point": "astropy.coordinates.angles.Latitude._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_is_bool == kwarg_count"
+    },
+    {
+      "program_point": "astropy.coordinates.angles.Latitude._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_is_bool == raised"
+    },
+    {
+      "program_point": "astropy.coordinates.angles.Latitude._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_is_bool == result_is_same_as_arg0"
+    },
+    {
+      "program_point": "astropy.coordinates.angles.Latitude._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_ndim == arg0_shape_len"
+    },
+    {
+      "program_point": "astropy.coordinates.angles.Latitude._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_truth == arg1_len"
+    },
+    {
+      "program_point": "astropy.coordinates.angles.Latitude._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_truth == arg1_ndim"
+    },
+    {
+      "program_point": "astropy.coordinates.angles.Latitude._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_truth == arg1_shape_len"
+    },
+    {
+      "program_point": "astropy.coordinates.angles.Latitude._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_truth == arg1_size"
+    },
+    {
+      "program_point": "astropy.coordinates.angles.Latitude._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_truth == result_len"
+    },
+    {
+      "program_point": "astropy.coordinates.angles.Latitude._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_truth == result_ndim"
+    },
+    {
+      "program_point": "astropy.coordinates.angles.Latitude._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_truth == result_size"
+    },
+    {
+      "program_point": "astropy.coordinates.angles.Latitude._validate_angles.return:::POINT",
+      "likely_invariant": "arg1_is_none == arg_count"
+    },
+    {
+      "program_point": "astropy.coordinates.angles.Latitude._validate_angles.return:::POINT",
+      "likely_invariant": "arg1_is_none == result_is_none"
+    },
+    {
+      "program_point": "astropy.coordinates.angles.Latitude._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_float == 0.0"
+    },
+    {
+      "program_point": "astropy.coordinates.angles.Latitude._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_is_bool == 0"
+    },
+    {
+      "program_point": "astropy.coordinates.angles.Latitude._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_len one of { -1, 4 }"
+    },
+    {
+      "program_point": "astropy.coordinates.angles.Latitude._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_ndim one of { 0, 1 }"
+    },
+    {
+      "program_point": "astropy.coordinates.angles.Latitude._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_size one of { 1, 4 }"
+    },
+    {
+      "program_point": "astropy.coordinates.angles.Latitude._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_truth == -1"
+    },
+    {
+      "program_point": "astropy.coordinates.angles.Latitude._validate_angles.return:::POINT",
+      "likely_invariant": "arg1_is_none == 1"
+    },
+    {
+      "program_point": "astropy.coordinates.angles._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_float == arg0_is_float"
+    },
+    {
+      "program_point": "astropy.coordinates.angles._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_float == arg1_float"
+    },
+    {
+      "program_point": "astropy.coordinates.angles._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_is_bool == arg0_is_int"
+    },
+    {
+      "program_point": "astropy.coordinates.angles._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_is_bool == arg0_is_none"
+    },
+    {
+      "program_point": "astropy.coordinates.angles._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_is_bool == arg1_is_none"
+    },
+    {
+      "program_point": "astropy.coordinates.angles._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_is_bool == kwarg_count"
+    },
+    {
+      "program_point": "astropy.coordinates.angles._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_is_bool == raised"
+    },
+    {
+      "program_point": "astropy.coordinates.angles._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_is_bool == result_is_same_as_arg0"
+    },
+    {
+      "program_point": "astropy.coordinates.angles._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_len == arg1_len"
+    },
+    {
+      "program_point": "astropy.coordinates.angles._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_ndim == arg0_shape_len"
+    },
+    {
+      "program_point": "astropy.coordinates.angles._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_ndim == arg1_ndim"
+    },
+    {
+      "program_point": "astropy.coordinates.angles._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_ndim == arg1_shape_len"
+    },
+    {
+      "program_point": "astropy.coordinates.angles._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_size == arg1_size"
+    },
+    {
+      "program_point": "astropy.coordinates.angles._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_truth == arg1_truth"
+    },
+    {
+      "program_point": "astropy.coordinates.angles._validate_angles.return:::POINT",
+      "likely_invariant": "arg0_truth == result_len"
+    }
+  ]
+}

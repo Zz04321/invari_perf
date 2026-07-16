@@ -1,0 +1,460 @@
+{
+  "task_id": "astropy__astropy-14590",
+  "trace_source": "official SWE-Perf Docker image, base commit, official efficiency test execution",
+  "prediction_label": null,
+  "trace_target_source": "patch-modules",
+  "trace_targets": {
+    "astropy.utils.masked.core": [
+      "MaskedNDArray._combine_masks",
+      "MaskedNDArray.__array_ufunc__"
+    ]
+  },
+  "runtime_trace_rows": 345,
+  "deduplicated_trace_rows": 10,
+  "efficiency_test": [
+    "astropy/nddata/tests/test_ccddata.py::test_initialize_from_fits_with_extension",
+    "astropy/timeseries/periodograms/lombscargle/implementations/tests/test_utils.py::test_trig_sum[0.1-2-False-0]",
+    "astropy/timeseries/periodograms/lombscargle/implementations/tests/test_utils.py::test_trig_sum[0.1-2-True-0]",
+    "astropy/timeseries/periodograms/lombscargle/tests/test_lombscargle.py::test_nterms_methods[log-4-full-True-True-fastchi2]"
+  ],
+  "artifacts": {
+    "runtime_trace": "experiments/swe_perf_pilot/results/daikon_real_trace/astropy__astropy-14590/runtime_trace.jsonl",
+    "decls": "experiments/swe_perf_pilot/results/daikon_real_trace/astropy__astropy-14590/real_trace.decls",
+    "dtrace": "experiments/swe_perf_pilot/results/daikon_real_trace/astropy__astropy-14590/real_trace.dtrace",
+    "daikon_output": "experiments/swe_perf_pilot/results/daikon_real_trace/astropy__astropy-14590/daikon_output.txt"
+  },
+  "likely_invariants_by_program_point": {
+    "astropy.utils.masked.core.<module>.return:::POINT": [
+      "arg0_float == arg0_is_float",
+      "arg0_float == arg1_float",
+      "arg0_is_bool == arg0_is_int",
+      "arg0_is_bool == arg0_truth",
+      "arg0_is_bool == arg1_truth",
+      "arg0_is_bool == arg_count",
+      "arg0_is_bool == kwarg_count",
+      "arg0_is_bool == raised",
+      "arg0_is_none == arg1_is_none",
+      "arg0_is_none == result_is_none",
+      "arg0_is_none == result_is_same_as_arg0",
+      "arg0_len == arg0_ndim",
+      "arg0_len == arg0_shape_len",
+      "arg0_len == arg0_size",
+      "arg0_len == arg1_len",
+      "arg0_len == arg1_ndim",
+      "arg0_len == arg1_shape_len",
+      "arg0_len == arg1_size",
+      "arg0_len == result_len",
+      "arg0_len == result_ndim",
+      "arg0_len == result_size",
+      "arg0_float == 0.0",
+      "arg0_is_bool == 0",
+      "arg0_is_none == 1",
+      "arg0_len == -1"
+    ],
+    "astropy.utils.masked.core.Masked.return:::POINT": [
+      "arg0_float == arg0_is_float",
+      "arg0_float == arg1_float",
+      "arg0_is_bool == arg0_is_int",
+      "arg0_is_bool == arg0_truth",
+      "arg0_is_bool == arg1_truth",
+      "arg0_is_bool == arg_count",
+      "arg0_is_bool == kwarg_count",
+      "arg0_is_bool == raised",
+      "arg0_is_bool == result_is_none",
+      "arg0_is_bool == result_is_same_as_arg0",
+      "arg0_is_none == arg1_is_none",
+      "arg0_len == arg0_ndim",
+      "arg0_len == arg0_shape_len",
+      "arg0_len == arg0_size",
+      "arg0_len == arg1_len",
+      "arg0_len == arg1_ndim",
+      "arg0_len == arg1_shape_len",
+      "arg0_len == arg1_size",
+      "arg0_len == result_len",
+      "arg0_len == result_ndim",
+      "arg0_len == result_size",
+      "arg0_float == 0.0",
+      "arg0_is_bool == 0",
+      "arg0_is_none == 1",
+      "arg0_len == -1"
+    ],
+    "astropy.utils.masked.core.MaskedArraySubclassInfo.return:::POINT": [
+      "arg0_float == arg0_is_float",
+      "arg0_float == arg1_float",
+      "arg0_is_bool == arg0_is_int",
+      "arg0_is_bool == arg0_truth",
+      "arg0_is_bool == arg1_truth",
+      "arg0_is_bool == arg_count",
+      "arg0_is_bool == kwarg_count",
+      "arg0_is_bool == raised",
+      "arg0_is_bool == result_is_none",
+      "arg0_is_bool == result_is_same_as_arg0",
+      "arg0_is_none == arg1_is_none",
+      "arg0_len == arg0_ndim",
+      "arg0_len == arg0_shape_len",
+      "arg0_len == arg0_size",
+      "arg0_len == arg1_len",
+      "arg0_len == arg1_ndim",
+      "arg0_len == arg1_shape_len",
+      "arg0_len == arg1_size",
+      "arg0_len == result_len",
+      "arg0_len == result_ndim",
+      "arg0_len == result_size",
+      "arg0_float == 0.0",
+      "arg0_is_bool == 0",
+      "arg0_is_none == 1",
+      "arg0_len == -1"
+    ],
+    "astropy.utils.masked.core.MaskedInfoBase.return:::POINT": [
+      "arg0_float == arg0_is_float",
+      "arg0_float == arg1_float",
+      "arg0_is_bool == arg0_is_int",
+      "arg0_is_bool == arg0_truth",
+      "arg0_is_bool == arg1_truth",
+      "arg0_is_bool == arg_count",
+      "arg0_is_bool == kwarg_count",
+      "arg0_is_bool == raised",
+      "arg0_is_bool == result_is_none",
+      "arg0_is_bool == result_is_same_as_arg0",
+      "arg0_is_none == arg1_is_none",
+      "arg0_len == arg0_ndim",
+      "arg0_len == arg0_shape_len",
+      "arg0_len == arg0_size",
+      "arg0_len == arg1_len",
+      "arg0_len == arg1_ndim",
+      "arg0_len == arg1_shape_len",
+      "arg0_len == arg1_size",
+      "arg0_len == result_len",
+      "arg0_len == result_ndim",
+      "arg0_len == result_size",
+      "arg0_float == 0.0",
+      "arg0_is_bool == 0",
+      "arg0_is_none == 1",
+      "arg0_len == -1"
+    ],
+    "astropy.utils.masked.core.MaskedIterator.return:::POINT": [
+      "arg0_float == arg0_is_float",
+      "arg0_float == arg1_float",
+      "arg0_is_bool == arg0_is_int",
+      "arg0_is_bool == arg0_truth",
+      "arg0_is_bool == arg1_truth",
+      "arg0_is_bool == arg_count",
+      "arg0_is_bool == kwarg_count",
+      "arg0_is_bool == raised",
+      "arg0_is_none == arg1_is_none",
+      "arg0_is_none == result_is_none",
+      "arg0_is_none == result_is_same_as_arg0",
+      "arg0_len == arg0_ndim",
+      "arg0_len == arg0_shape_len",
+      "arg0_len == arg0_size",
+      "arg0_len == arg1_len",
+      "arg0_len == arg1_ndim",
+      "arg0_len == arg1_shape_len",
+      "arg0_len == arg1_size",
+      "arg0_len == result_len",
+      "arg0_len == result_ndim",
+      "arg0_len == result_size",
+      "arg0_float == 0.0",
+      "arg0_is_bool == 0",
+      "arg0_is_none == 1",
+      "arg0_len == -1"
+    ],
+    "astropy.utils.masked.core.MaskedNDArray.return:::POINT": [
+      "arg0_float == arg0_is_float",
+      "arg0_float == arg1_float",
+      "arg0_is_bool == arg0_is_int",
+      "arg0_is_bool == arg0_truth",
+      "arg0_is_bool == arg1_truth",
+      "arg0_is_bool == arg_count",
+      "arg0_is_bool == kwarg_count",
+      "arg0_is_bool == raised",
+      "arg0_is_bool == result_is_none",
+      "arg0_is_bool == result_is_same_as_arg0",
+      "arg0_is_none == arg1_is_none",
+      "arg0_len == arg0_ndim",
+      "arg0_len == arg0_shape_len",
+      "arg0_len == arg0_size",
+      "arg0_len == arg1_len",
+      "arg0_len == arg1_ndim",
+      "arg0_len == arg1_shape_len",
+      "arg0_len == arg1_size",
+      "arg0_len == result_len",
+      "arg0_len == result_ndim",
+      "arg0_len == result_size",
+      "arg0_float == 0.0",
+      "arg0_is_bool == 0",
+      "arg0_is_none == 1",
+      "arg0_len == -1"
+    ],
+    "astropy.utils.masked.core.MaskedNDArrayInfo.return:::POINT": [
+      "arg0_float == arg0_is_float",
+      "arg0_float == arg1_float",
+      "arg0_is_bool == arg0_is_int",
+      "arg0_is_bool == arg0_truth",
+      "arg0_is_bool == arg1_truth",
+      "arg0_is_bool == arg_count",
+      "arg0_is_bool == kwarg_count",
+      "arg0_is_bool == raised",
+      "arg0_is_bool == result_is_none",
+      "arg0_is_bool == result_is_same_as_arg0",
+      "arg0_is_none == arg1_is_none",
+      "arg0_len == arg0_ndim",
+      "arg0_len == arg0_shape_len",
+      "arg0_len == arg0_size",
+      "arg0_len == arg1_len",
+      "arg0_len == arg1_ndim",
+      "arg0_len == arg1_shape_len",
+      "arg0_len == arg1_size",
+      "arg0_len == result_len",
+      "arg0_len == result_ndim",
+      "arg0_len == result_size",
+      "arg0_float == 0.0",
+      "arg0_is_bool == 0",
+      "arg0_is_none == 1",
+      "arg0_len == -1"
+    ],
+    "astropy.utils.masked.core.MaskedRecarray.return:::POINT": [
+      "arg0_float == arg0_is_float",
+      "arg0_float == arg1_float",
+      "arg0_is_bool == arg0_is_int",
+      "arg0_is_bool == arg0_truth",
+      "arg0_is_bool == arg1_truth",
+      "arg0_is_bool == arg_count",
+      "arg0_is_bool == kwarg_count",
+      "arg0_is_bool == raised",
+      "arg0_is_bool == result_is_none",
+      "arg0_is_bool == result_is_same_as_arg0",
+      "arg0_is_none == arg1_is_none",
+      "arg0_len == arg0_ndim",
+      "arg0_len == arg0_shape_len",
+      "arg0_len == arg0_size",
+      "arg0_len == arg1_len",
+      "arg0_len == arg1_ndim",
+      "arg0_len == arg1_shape_len",
+      "arg0_len == arg1_size",
+      "arg0_len == result_len",
+      "arg0_len == result_ndim",
+      "arg0_len == result_size",
+      "arg0_float == 0.0",
+      "arg0_is_bool == 0",
+      "arg0_is_none == 1",
+      "arg0_len == -1"
+    ],
+    "astropy.utils.masked.core.__init__.return:::POINT": [
+      "arg0_float == arg0_is_float",
+      "arg0_float == arg1_float",
+      "arg0_is_bool == arg0_is_int",
+      "arg0_is_bool == arg0_is_none",
+      "arg0_is_bool == arg1_is_none",
+      "arg0_is_bool == arg1_truth",
+      "arg0_is_bool == kwarg_count",
+      "arg0_is_bool == raised",
+      "arg0_is_bool == result_is_same_as_arg0",
+      "arg0_len == arg0_ndim",
+      "arg0_len == arg0_shape_len",
+      "arg0_len == arg0_size",
+      "arg0_len == arg1_len",
+      "arg0_len == arg1_ndim",
+      "arg0_len == arg1_shape_len",
+      "arg0_len == arg1_size",
+      "arg0_len == result_len",
+      "arg0_len == result_ndim",
+      "arg0_len == result_size",
+      "arg0_truth == result_is_none",
+      "arg0_float == 0.0",
+      "arg0_is_bool == 0",
+      "arg0_len == -1",
+      "arg0_truth == 1",
+      "arg_count == 2"
+    ],
+    "astropy.utils.masked.core._comparison_method.return:::POINT": [
+      "arg0_float == arg0_is_float",
+      "arg0_float == arg1_float",
+      "arg0_is_bool == arg0_is_int",
+      "arg0_is_bool == arg0_is_none",
+      "arg0_is_bool == arg1_truth",
+      "arg0_is_bool == kwarg_count",
+      "arg0_is_bool == raised",
+      "arg0_is_bool == result_is_none",
+      "arg0_is_bool == result_is_same_as_arg0",
+      "arg0_len == arg0_size",
+      "arg0_ndim == arg0_shape_len",
+      "arg0_ndim == arg1_len",
+      "arg0_ndim == arg1_ndim",
+      "arg0_ndim == arg1_shape_len",
+      "arg0_ndim == arg1_size",
+      "arg0_ndim == result_len",
+      "arg0_ndim == result_ndim",
+      "arg0_ndim == result_size",
+      "arg0_truth == arg1_is_none",
+      "arg0_truth == arg_count",
+      "arg0_float == 0.0",
+      "arg0_is_bool == 0",
+      "arg0_len == 6",
+      "arg0_ndim == -1",
+      "arg0_truth == 1"
+    ]
+  },
+  "agent_context_candidates": [
+    {
+      "program_point": "astropy.utils.masked.core.<module>.return:::POINT",
+      "likely_invariant": "arg0_float == arg0_is_float"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.<module>.return:::POINT",
+      "likely_invariant": "arg0_float == arg1_float"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.<module>.return:::POINT",
+      "likely_invariant": "arg0_is_bool == arg0_is_int"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.<module>.return:::POINT",
+      "likely_invariant": "arg0_is_bool == arg0_truth"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.<module>.return:::POINT",
+      "likely_invariant": "arg0_is_bool == arg1_truth"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.<module>.return:::POINT",
+      "likely_invariant": "arg0_is_bool == arg_count"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.<module>.return:::POINT",
+      "likely_invariant": "arg0_is_bool == kwarg_count"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.<module>.return:::POINT",
+      "likely_invariant": "arg0_is_bool == raised"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.<module>.return:::POINT",
+      "likely_invariant": "arg0_is_none == arg1_is_none"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.<module>.return:::POINT",
+      "likely_invariant": "arg0_is_none == result_is_none"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.<module>.return:::POINT",
+      "likely_invariant": "arg0_is_none == result_is_same_as_arg0"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.<module>.return:::POINT",
+      "likely_invariant": "arg0_len == arg0_ndim"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.<module>.return:::POINT",
+      "likely_invariant": "arg0_len == arg0_shape_len"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.<module>.return:::POINT",
+      "likely_invariant": "arg0_len == arg0_size"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.<module>.return:::POINT",
+      "likely_invariant": "arg0_len == arg1_len"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.<module>.return:::POINT",
+      "likely_invariant": "arg0_len == arg1_ndim"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.<module>.return:::POINT",
+      "likely_invariant": "arg0_len == arg1_shape_len"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.<module>.return:::POINT",
+      "likely_invariant": "arg0_len == arg1_size"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.<module>.return:::POINT",
+      "likely_invariant": "arg0_len == result_len"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.<module>.return:::POINT",
+      "likely_invariant": "arg0_len == result_ndim"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.<module>.return:::POINT",
+      "likely_invariant": "arg0_len == result_size"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.<module>.return:::POINT",
+      "likely_invariant": "arg0_float == 0.0"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.<module>.return:::POINT",
+      "likely_invariant": "arg0_is_bool == 0"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.<module>.return:::POINT",
+      "likely_invariant": "arg0_is_none == 1"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.<module>.return:::POINT",
+      "likely_invariant": "arg0_len == -1"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.Masked.return:::POINT",
+      "likely_invariant": "arg0_float == arg0_is_float"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.Masked.return:::POINT",
+      "likely_invariant": "arg0_float == arg1_float"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.Masked.return:::POINT",
+      "likely_invariant": "arg0_is_bool == arg0_is_int"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.Masked.return:::POINT",
+      "likely_invariant": "arg0_is_bool == arg0_truth"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.Masked.return:::POINT",
+      "likely_invariant": "arg0_is_bool == arg1_truth"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.Masked.return:::POINT",
+      "likely_invariant": "arg0_is_bool == arg_count"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.Masked.return:::POINT",
+      "likely_invariant": "arg0_is_bool == kwarg_count"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.Masked.return:::POINT",
+      "likely_invariant": "arg0_is_bool == raised"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.Masked.return:::POINT",
+      "likely_invariant": "arg0_is_bool == result_is_none"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.Masked.return:::POINT",
+      "likely_invariant": "arg0_is_bool == result_is_same_as_arg0"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.Masked.return:::POINT",
+      "likely_invariant": "arg0_is_none == arg1_is_none"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.Masked.return:::POINT",
+      "likely_invariant": "arg0_len == arg0_ndim"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.Masked.return:::POINT",
+      "likely_invariant": "arg0_len == arg0_shape_len"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.Masked.return:::POINT",
+      "likely_invariant": "arg0_len == arg0_size"
+    },
+    {
+      "program_point": "astropy.utils.masked.core.Masked.return:::POINT",
+      "likely_invariant": "arg0_len == arg1_len"
+    }
+  ]
+}

@@ -1,0 +1,222 @@
+[
+  {
+    "instance_id": "astropy__astropy-16065",
+    "repo": "astropy/astropy",
+    "invariant_type": "api_contract",
+    "confidence": "medium",
+    "human_drift_available": "True",
+    "human_drift": "True",
+    "review_category": "B - Needs Evidence",
+    "paper_role": "output determinism drift example",
+    "next_action": "Confirm why the SWE-Perf benchmark covers this output-format patch."
+  },
+  {
+    "instance_id": "astropy__astropy-16058",
+    "repo": "astropy/astropy",
+    "invariant_type": "validation_normalization",
+    "confidence": "high",
+    "human_drift_available": "True",
+    "human_drift": "True",
+    "review_category": "A - Core",
+    "paper_role": "main showcase",
+    "next_action": "Write a detailed case narrative linking validate_power/sanitize_power to Daikon evidence and expert patch."
+  },
+  {
+    "instance_id": "astropy__astropy-15948",
+    "repo": "astropy/astropy",
+    "invariant_type": "representation",
+    "confidence": "medium",
+    "human_drift_available": "True",
+    "human_drift": "False",
+    "review_category": "B - Needs Evidence",
+    "paper_role": "masked-array representation candidate",
+    "next_action": "Split broad helper protocol into one or two narrow invariant claims."
+  },
+  {
+    "instance_id": "astropy__astropy-15710",
+    "repo": "astropy/astropy",
+    "invariant_type": "api_contract",
+    "confidence": "medium",
+    "human_drift_available": "True",
+    "human_drift": "False",
+    "review_category": "B - Needs Evidence",
+    "paper_role": "unit-preserving NumPy wrapper candidate",
+    "next_action": "Select one patched function and one API condition instead of all wrappers."
+  },
+  {
+    "instance_id": "astropy__astropy-15228",
+    "repo": "astropy/astropy",
+    "invariant_type": "shape_and_api_contract",
+    "confidence": "high",
+    "human_drift_available": "True",
+    "human_drift": "False",
+    "review_category": "A - Core",
+    "paper_role": "shape/API contract invariant",
+    "next_action": "Decide whether compatibility-oriented cases remain in the core scope."
+  },
+  {
+    "instance_id": "astropy__astropy-14590",
+    "repo": "astropy/astropy",
+    "invariant_type": "ownership_lifetime",
+    "confidence": "high",
+    "human_drift_available": "True",
+    "human_drift": "False",
+    "review_category": "A - Core",
+    "paper_role": "ownership/lifetime invariant",
+    "next_action": "Collect issue or test evidence for where/out aliasing behavior."
+  },
+  {
+    "instance_id": "astropy__astropy-14413",
+    "repo": "astropy/astropy",
+    "invariant_type": "api_contract",
+    "confidence": "medium",
+    "human_drift_available": "True",
+    "human_drift": "False",
+    "review_category": "B - Needs Evidence",
+    "paper_role": "formatting/API contract candidate",
+    "next_action": "Decide whether formatting contracts are in scope for the paper."
+  },
+  {
+    "instance_id": "astropy__astropy-13817",
+    "repo": "astropy/astropy",
+    "invariant_type": "mixed_api_numeric",
+    "confidence": "low",
+    "human_drift_available": "True",
+    "human_drift": "False",
+    "review_category": "C - Exclude From Core",
+    "paper_role": "mixed-patch cautionary example",
+    "next_action": "Do not use in main quantitative claims unless split into a smaller sub-case."
+  },
+  {
+    "instance_id": "astropy__astropy-13745",
+    "repo": "astropy/astropy",
+    "invariant_type": "numeric_precision",
+    "confidence": "high",
+    "human_drift_available": "True",
+    "human_drift": "False",
+    "review_category": "A - Core",
+    "paper_role": "numeric precision invariant",
+    "next_action": "Keep as a clear safety invariant case; no urgent extra mining needed."
+  },
+  {
+    "instance_id": "astropy__astropy-13734",
+    "repo": "astropy/astropy",
+    "invariant_type": "representation",
+    "confidence": "high",
+    "human_drift_available": "True",
+    "human_drift": "False",
+    "review_category": "A - Core",
+    "paper_role": "representation invariant",
+    "next_action": "Map header_rows behavior to one concrete test or documentation paragraph."
+  },
+  {
+    "instance_id": "astropy__astropy-13496",
+    "repo": "astropy/astropy",
+    "invariant_type": "cache_consistency",
+    "confidence": "high",
+    "human_drift_available": "False",
+    "human_drift": "",
+    "review_category": "A - Core",
+    "paper_role": "cache consistency invariant",
+    "next_action": "Run drift extraction and collect pickle/cache evidence from tests or patch text."
+  },
+  {
+    "instance_id": "astropy__astropy-12842",
+    "repo": "astropy/astropy",
+    "invariant_type": "serialization_contract",
+    "confidence": "medium",
+    "human_drift_available": "True",
+    "human_drift": "True",
+    "review_category": "B - Needs Evidence",
+    "paper_role": "serialization drift example",
+    "next_action": "Map added TimeInfoBase Daikon invariants back to serialization round-trip behavior."
+  },
+  {
+    "instance_id": "matplotlib__matplotlib-28104",
+    "repo": "matplotlib/matplotlib",
+    "invariant_type": "state_consistency",
+    "confidence": "high",
+    "human_drift_available": "False",
+    "human_drift": "",
+    "review_category": "A - Core",
+    "paper_role": "state consistency invariant",
+    "next_action": "Debug drift extraction; collect docs/gallery evidence for hatchcolor fallback."
+  },
+  {
+    "instance_id": "matplotlib__matplotlib-24250",
+    "repo": "matplotlib/matplotlib",
+    "invariant_type": "event_ordering",
+    "confidence": "medium",
+    "human_drift_available": "False",
+    "human_drift": "",
+    "review_category": "B - Needs Evidence",
+    "paper_role": "event ordering candidate",
+    "next_action": "Collect issue/PR text or test proving callback order is semantically observable."
+  },
+  {
+    "instance_id": "matplotlib__matplotlib-23712",
+    "repo": "matplotlib/matplotlib",
+    "invariant_type": "resource_lifetime",
+    "confidence": "high",
+    "human_drift_available": "False",
+    "human_drift": "",
+    "review_category": "A - Core",
+    "paper_role": "resource lifetime invariant",
+    "next_action": "Collect issue/PR or tests showing figure destroy semantics without eager gc.collect."
+  },
+  {
+    "instance_id": "mwaskom__seaborn-2458",
+    "repo": "mwaskom/seaborn",
+    "invariant_type": "data_representation",
+    "confidence": "high",
+    "human_drift_available": "False",
+    "human_drift": "",
+    "review_category": "A - Core",
+    "paper_role": "data representation invariant",
+    "next_action": "Collect changelog/test evidence for datetime converted variables."
+  },
+  {
+    "instance_id": "mwaskom__seaborn-2449",
+    "repo": "mwaskom/seaborn",
+    "invariant_type": "style_state_consistency",
+    "confidence": "medium",
+    "human_drift_available": "False",
+    "human_drift": "",
+    "review_category": "C - Exclude From Core",
+    "paper_role": "large-refactor cautionary example",
+    "next_action": "Do not use in main quantitative claims unless split into smaller sub-cases."
+  },
+  {
+    "instance_id": "mwaskom__seaborn-2389",
+    "repo": "mwaskom/seaborn",
+    "invariant_type": "data_representation",
+    "confidence": "medium",
+    "human_drift_available": "False",
+    "human_drift": "",
+    "review_category": "B - Needs Evidence",
+    "paper_role": "data representation/alignment candidate",
+    "next_action": "Split color preprocessing into a narrower pandas index or missing-value invariant."
+  },
+  {
+    "instance_id": "mwaskom__seaborn-2313",
+    "repo": "mwaskom/seaborn",
+    "invariant_type": "index_alignment",
+    "confidence": "high",
+    "human_drift_available": "False",
+    "human_drift": "",
+    "review_category": "A - Core",
+    "paper_role": "index alignment invariant",
+    "next_action": "Collect exact test/docstring showing indexed colors require indexed data."
+  },
+  {
+    "instance_id": "mwaskom__seaborn-2224",
+    "repo": "mwaskom/seaborn",
+    "invariant_type": "visual_encoding",
+    "confidence": "medium",
+    "human_drift_available": "False",
+    "human_drift": "",
+    "review_category": "B - Needs Evidence",
+    "paper_role": "visual encoding candidate",
+    "next_action": "Choose one sub-invariant such as density stacking or discrete detection."
+  }
+]

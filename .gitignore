@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+*$py.class
+
+.codex-runtime/
+.hf_cache/
+
+reports/
+experiments/swe_perf_pilot/results/
+
+real_trace.inv.gz
+
+.DS_Store

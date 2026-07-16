@@ -1,0 +1,3 @@
+display_name: Daikon Invariant Mining
+short_description: Mine Daikon invariants for optimization.
+default_prompt: Use Daikon invariant mining to gather semantic evidence before optimizing performance-critical code.

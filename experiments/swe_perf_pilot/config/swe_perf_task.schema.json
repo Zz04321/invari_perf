@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SWE-Perf Task Config",
+  "type": "object",
+  "required": [
+    "task_id",
+    "dataset",
+    "repo",
+    "base_commit",
+    "repo_path",
+    "target_files",
+    "target_functions",
+    "performance_tests",
+    "correctness_command",
+    "performance_command",
+    "invariant_context_path"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "description": "Official SWE-Perf instance id."
+    },
+    "dataset": {
+      "const": "SWE-Perf"
+    },
+    "repo": {
+      "type": "string",
+      "description": "Repository name, for example owner/name."
+    },
+    "base_commit": {
+      "type": "string",
+      "description": "Original codebase commit used by the SWE-Perf instance."
+    },
+    "repo_path": {
+      "type": "string",
+      "description": "Local checkout path for the original SWE-Perf codebase."
+    },
+    "target_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "target_functions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "performance_tests": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Performance-related tests from the SWE-Perf instance."
+    },
+    "correctness_command": {
+      "type": "string",
+      "description": "Command that runs the SWE-Perf correctness check for this instance."
+    },
+    "performance_command": {
+      "type": "string",
+      "description": "Command that runs the SWE-Perf performance check for this instance."
+    },
+    "official_evaluation_command": {
+      "type": "string",
+      "description": "Optional one-shot official SWE-Perf evaluator command, if available locally."
+    },
+    "expert_patch_path": {
+      "type": "string",
+      "description": "Optional path to the expert patch shipped by SWE-Perf."
+    },
+    "docker_image": {
+      "type": "string",
+      "description": "Optional SWE-Perf executable environment image."
+    },
+    "invariant_context_path": {
+      "type": "string"
+    },
+    "metric": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "direction": {
+          "enum": ["lower_is_better", "higher_is_better"]
+        }
+      }
+    }
+  }
+}

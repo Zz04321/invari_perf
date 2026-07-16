@@ -1,0 +1,21 @@
+instance_id,repo,invariant_type,confidence,human_drift_available,human_drift,review_category,paper_role,next_action
+astropy__astropy-16065,astropy/astropy,api_contract,medium,True,True,B - Needs Evidence,output determinism drift example,Confirm why the SWE-Perf benchmark covers this output-format patch.
+astropy__astropy-16058,astropy/astropy,validation_normalization,high,True,True,A - Core,main showcase,Write a detailed case narrative linking validate_power/sanitize_power to Daikon evidence and expert patch.
+astropy__astropy-15948,astropy/astropy,representation,medium,True,False,B - Needs Evidence,masked-array representation candidate,Split broad helper protocol into one or two narrow invariant claims.
+astropy__astropy-15710,astropy/astropy,api_contract,medium,True,False,B - Needs Evidence,unit-preserving NumPy wrapper candidate,Select one patched function and one API condition instead of all wrappers.
+astropy__astropy-15228,astropy/astropy,shape_and_api_contract,high,True,False,A - Core,shape/API contract invariant,Decide whether compatibility-oriented cases remain in the core scope.
+astropy__astropy-14590,astropy/astropy,ownership_lifetime,high,True,False,A - Core,ownership/lifetime invariant,Collect issue or test evidence for where/out aliasing behavior.
+astropy__astropy-14413,astropy/astropy,api_contract,medium,True,False,B - Needs Evidence,formatting/API contract candidate,Decide whether formatting contracts are in scope for the paper.
+astropy__astropy-13817,astropy/astropy,mixed_api_numeric,low,True,False,C - Exclude From Core,mixed-patch cautionary example,Do not use in main quantitative claims unless split into a smaller sub-case.
+astropy__astropy-13745,astropy/astropy,numeric_precision,high,True,False,A - Core,numeric precision invariant,Keep as a clear safety invariant case; no urgent extra mining needed.
+astropy__astropy-13734,astropy/astropy,representation,high,True,False,A - Core,representation invariant,Map header_rows behavior to one concrete test or documentation paragraph.
+astropy__astropy-13496,astropy/astropy,cache_consistency,high,False,,A - Core,cache consistency invariant,Run drift extraction and collect pickle/cache evidence from tests or patch text.
+astropy__astropy-12842,astropy/astropy,serialization_contract,medium,True,True,B - Needs Evidence,serialization drift example,Map added TimeInfoBase Daikon invariants back to serialization round-trip behavior.
+matplotlib__matplotlib-28104,matplotlib/matplotlib,state_consistency,high,False,,A - Core,state consistency invariant,Debug drift extraction; collect docs/gallery evidence for hatchcolor fallback.
+matplotlib__matplotlib-24250,matplotlib/matplotlib,event_ordering,medium,False,,B - Needs Evidence,event ordering candidate,Collect issue/PR text or test proving callback order is semantically observable.
+matplotlib__matplotlib-23712,matplotlib/matplotlib,resource_lifetime,high,False,,A - Core,resource lifetime invariant,Collect issue/PR or tests showing figure destroy semantics without eager gc.collect.
+mwaskom__seaborn-2458,mwaskom/seaborn,data_representation,high,False,,A - Core,data representation invariant,Collect changelog/test evidence for datetime converted variables.
+mwaskom__seaborn-2449,mwaskom/seaborn,style_state_consistency,medium,False,,C - Exclude From Core,large-refactor cautionary example,Do not use in main quantitative claims unless split into smaller sub-cases.
+mwaskom__seaborn-2389,mwaskom/seaborn,data_representation,medium,False,,B - Needs Evidence,data representation/alignment candidate,Split color preprocessing into a narrower pandas index or missing-value invariant.
+mwaskom__seaborn-2313,mwaskom/seaborn,index_alignment,high,False,,A - Core,index alignment invariant,Collect exact test/docstring showing indexed colors require indexed data.
+mwaskom__seaborn-2224,mwaskom/seaborn,visual_encoding,medium,False,,B - Needs Evidence,visual encoding candidate,Choose one sub-invariant such as density stacking or discrete detection.

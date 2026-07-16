@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Semantic Waste Showcase</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">Semantic Waste Showcase</div>
+      <nav>
+        <a href="#sweperf">1. SWE-Perf</a>
+        <a href="#invariant">2. Daikon</a>
+        <a href="#case">3. Case</a>
+        <a href="#codex">4. Result</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="intro">
+        <p class="eyebrow">Correctness Bugs Are Not Enough</p>
+        <h1>一个真实 SWE-Perf 上的 Showcase</h1>
+        <p class="lead">
+          1. SWE-Perf 给 agent 什么任务
+          2. Daikon 从运行轨迹里挖到什么运行时规律
+          3. Codex 加入这些证据后如何形成优化提示
+        </p>
+      </section>
+
+      <section id="sweperf" class="section">
+        <div class="section-title">
+          <span>1</span>
+          <div>
+            <p class="eyebrow">SWE-Perf Task</p>
+            <h2>SWE-Perf 到底给 agent 什么任务</h2>
+          </div>
+        </div>
+
+        <div class="card plain-card">
+          <p>
+            SWE-Perf 可以理解成“性能版 SWE-bench”：它给 agent 一个真实仓库、
+            一段性能优化任务描述、若干目标函数和官方评估脚本。Agent 要输出
+            patch，最后由 SWE-Perf 判断：
+          </p>
+          <ol class="steps">
+            <li>补丁能不能 apply。</li>
+            <li>正确性测试能不能通过。</li>
+            <li>性能测试有没有变快。</li>
+          </ol>
+        </div>
+
+        <div class="show-grid">
+          <article class="card">
+            <p class="mini-title">字段</p>
+            <h3>任务信息</h3>
+            <dl class="compact-list">
+              <div><dt>repo</dt><dd>要修改的真实仓库</dd></div>
+              <div><dt>instance_id</dt><dd>任务编号</dd></div>
+              <div><dt>problem</dt><dd>性能优化任务描述</dd></div>
+              <div><dt>targets</dt><dd>可能相关的函数</dd></div>
+            </dl>
+          </article>
+
+          <article class="card">
+            <p class="mini-title">流程</p>
+            <h3>SWE-Perf 怎么评分</h3>
+            <ol class="flow-list">
+              <li>给 agent 一个真实仓库任务。</li>
+              <li>agent 生成代码修改。</li>
+              <li>SWE-Perf 应用修改并运行测试。</li>
+              <li>比较正确性和性能结果。</li>
+            </ol>
+          </article>
+
+          <article class="card">
+            <p class="mini-title">输出</p>
+            <h3>agent 要交代码修改</h3>
+            <p>
+              这里的 patch 就是一组代码改动。SWE-Perf 不只看它写得像不像，
+              而是会真的应用到仓库里跑测试。
+            </p>
+          </article>
+        </div>
+
+        <div class="artifact-card">
+          <div>
+            <p class="mini-title">Example record</p>
+            <h3>一个任务大概长这样</h3>
+            <p>
+              这里保留最关键的信息：仓库、任务编号、目标函数和性能测试。
+            </p>
+          </div>
+          <pre><code>{
+  "repo": "astropy/astropy",
+  "instance_id": "astropy__astropy-16058",
+  "target_functions": [
+    "CompositeUnit.__init__",
+    "validate_power",
+    "maybe_simple_fraction"
+  ],
+  "performance_test": "official performance test"
+}</code></pre>
+        </div>
+      </section>
+
+      <section id="invariant" class="section">
+        <div class="section-title">
+          <span>2</span>
+          <div>
+            <p class="eyebrow">Daikon Evidence</p>
+            <h2>Daikon 自动挖到的运行时规律</h2>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="stat-row">
+            <div>
+              <strong>374,532</strong>
+              <span>运行时观测次数</span>
+            </div>
+            <div>
+              <strong>356</strong>
+              <span>不同输入/输出形态</span>
+            </div>
+            <div>
+              <strong>validate_power</strong>
+              <span>目标函数</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="show-grid">
+          <article class="card">
+            <p class="mini-title">工具本身</p>
+            <h3>Daikon 做什么</h3>
+            <ol class="flow-list">
+              <li>运行程序，收集变量值。</li>
+              <li>观察函数入口和出口。</li>
+              <li>总结多次运行中经常成立的关系。</li>
+              <li>输出候选的运行时规律。</li>
+            </ol>
+          </article>
+
+          <article class="card">
+            <p class="mini-title">输入</p>
+            <h3>Daikon 需要什么</h3>
+            <p>
+              Daikon 不是只看源码。它需要程序真实运行时的值：
+              函数参数、返回值、对象状态，以及这些值出现了多少次。
+            </p>
+          </article>
+
+          <article class="card">
+            <p class="mini-title">输出形态</p>
+            <h3>输出是候选关系</h3>
+            <p>
+              例如“输入是整数时，返回值等于输入”。它不是补丁，
+              也不是完整证明，而是后续分析可以使用的证据。
+            </p>
+          </article>
+        </div>
+
+        <div class="tool-walkthrough">
+          <div class="inline-heading">
+            <div>
+              <p class="mini-title">工具操作台</p>
+              <h3>Daikon 的使用步骤</h3>
+            </div>
+            <span class="play-hint">点击步骤查看输入和输出</span>
+          </div>
+          <div class="tool-steps" role="tablist" aria-label="Daikon usage steps">
+            <button class="tool-step is-active" data-tool-step="prepare" type="button">1. 准备工具</button>
+            <button class="tool-step" data-tool-step="trace" type="button">2. 采集轨迹</button>
+            <button class="tool-step" data-tool-step="mine" type="button">3. 挖运行时规律</button>
+            <button class="tool-step" data-tool-step="package" type="button">4. 给 Codex</button>
+          </div>
+          <div class="tool-panel">
+            <div>
+              <p class="console-label">Step output</p>
+              <div id="tool-step-text" class="tool-step-text">
+                确认 Java 和 Daikon jar 可用。Daikon 最终会读取轨迹文件，
+                不是直接读取 Python 源码。
+              </div>
+            </div>
+            <pre id="tool-step-code"><code>java -version
+ls /tmp/daikon-5.8.24/daikon.jar</code></pre>
+          </div>
+        </div>
+
+        <div class="artifact-card">
+          <div>
+            <p class="mini-title">运行时语义证据</p>
+            <h3>Daikon 报告大概长这样</h3>
+            <p>
+              它不是直接给补丁，而是给出运行时观察到的输入/输出关系，以及这些关系来自多少次运行。
+            </p>
+          </div>
+          <pre><code>Daikon Runtime Evidence Report
+Task: astropy__astropy-16058
+Target filter: validate_power
+Coverage: 374532 observations, 356 unique observed shapes
+
+Useful runtime evidence:
+- result_is_same_as_arg0 one of { 0, 1 }
+- arg0_is_int <= result_is_same_as_arg0
+
+Optimization implication:
+- some paths can return the original input</code></pre>
+        </div>
+
+        <div class="card">
+          <div class="inline-heading table-heading">
+            <h3>Daikon 证据 -> 给 agent 的简短提示</h3>
+            <button class="small-button" data-reveal="raw-invariant" type="button">
+              看原始报告片段
+            </button>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Daikon 看到什么</th>
+                <th>怎么理解</th>
+                <th>给 Codex 的提示</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>result_is_same_as_arg0 one of {0, 1}</code></td>
+                <td><code>validate_power</code> 经常像“原样返回输入”。</td>
+                <td>可能存在直接返回输入的快路径。</td>
+              </tr>
+              <tr>
+                <td><code>arg0_is_int <= result_is_same_as_arg0</code></td>
+                <td>当输入是 <code>int</code> 时，返回原输入是观察到的行为。</td>
+                <td>可以考虑 <code>if type(p) is int: return p</code>。</td>
+              </tr>
+              <tr>
+                <td>来自 SWE-Perf 官方执行过程</td>
+                <td>这是运行时证据，不是形式化证明。</td>
+                <td>必须保留兜底逻辑，也就是慢路径。</td>
+              </tr>
+            </tbody>
+          </table>
+          <pre id="raw-invariant" class="reveal-code is-hidden"><code>Daikon Runtime Evidence Report
+Task: astropy__astropy-16058
+Coverage: 374532 observations, 356 unique observed shapes
+
+Useful runtime evidence:
+- result_is_same_as_arg0 one of { 0, 1 }
+- arg0_is_int <= result_is_same_as_arg0
+
+Optimization implications:
+- Some observed paths return the original object;
+  consider direct-return fast paths when the input type condition holds.</code></pre>
+        </div>
+
+        <div class="note">
+          Daikon 不是形式化证明，而是运行时证据。它能给出候选条件；
+          真正的安全性还要靠兜底逻辑、测试和 SWE-Perf 官方评估。
+        </div>
+      </section>
+
+      <section id="case" class="section">
+        <div class="section-title">
+          <span>3</span>
+          <div>
+            <p class="eyebrow">Case Study</p>
+            <h2>把两个模块放到一个真实例子里</h2>
+          </div>
+        </div>
+
+        <div class="show-grid">
+          <article class="card">
+            <p class="mini-title">SWE-Perf 实例</p>
+            <h3><code>astropy__astropy-16058</code></h3>
+            <p>
+              这是一个真实 Astropy 性能优化任务。SWE-Perf 给出仓库、目标函数和性能测试。
+            </p>
+          </article>
+
+          <article class="card">
+            <p class="mini-title">目标函数</p>
+            <h3><code>validate_power</code></h3>
+            <p>
+              性能测试运行时会反复调用它。如果它每次都多做一点工作，
+              整体耗时就会被放大。
+            </p>
+          </article>
+
+          <article class="card">
+            <p class="mini-title">问题模式</p>
+            <h3>检查 + 转换混在一起</h3>
+            <p>
+              很多时候只需要检查输入是否合法，但原实现还会顺手做转换。
+            </p>
+          </article>
+        </div>
+
+        <div class="explain">
+          <div class="inline-heading">
+            <h3>这个 case 的问题</h3>
+            <button class="small-button" data-reveal="problem-detail" type="button">
+              查看原因
+            </button>
+          </div>
+          <pre><code>validate_power(p):
+    1. 检查 p 是否合法
+    2. 把 p 转成更标准的表示
+    3. 返回处理后的 p</code></pre>
+          <p>
+            这里的性能浪费是：很多时候只需要“检查是否合法”，却一起做了
+            “转换成标准表示”的额外工作。
+          </p>
+          <div id="problem-detail" class="reveal-box is-hidden">
+            也就是说，这不是“输出错了”的正确性 bug。它更像
+            “行为没错，但把两个职责混在一起，导致热路径做了不必要工作”。
+          </div>
+        </div>
+
+        <div class="playground">
+          <div class="inline-heading">
+            <div>
+              <p class="eyebrow">Tiny Interactive</p>
+              <h3>换一个输入，看多做了什么</h3>
+            </div>
+            <span class="play-hint">选择输入类型</span>
+          </div>
+
+          <div class="power-buttons" aria-label="Power input examples">
+            <button class="power-button is-active" data-power="int" type="button">整数：2</button>
+            <button class="power-button" data-power="float" type="button">小数：0.5</button>
+            <button class="power-button" data-power="fraction" type="button">分数：1/3</button>
+            <button class="power-button" data-power="array" type="button">数组：[2, 2]</button>
+          </div>
+
+          <div class="path-grid">
+            <article class="path-card">
+              <h4>原来的 validate_power</h4>
+              <ol id="old-path"></ol>
+              <div class="cost">
+                <span>相对工作量</span>
+                <div class="meter"><i id="old-meter"></i></div>
+                <strong id="old-cost">high</strong>
+              </div>
+            </article>
+
+            <article class="path-card better">
+              <h4>快路径 + sanitize_power</h4>
+              <ol id="new-path"></ol>
+              <div class="cost">
+                <span>相对工作量</span>
+                <div class="meter"><i id="new-meter"></i></div>
+                <strong id="new-cost">low</strong>
+              </div>
+            </article>
+          </div>
+
+          <div id="play-summary" class="play-summary"></div>
+        </div>
+
+        <div class="daikon-runner">
+          <div class="runner-code">
+            <div class="inline-heading">
+              <h3>Daikon 实际调用</h3>
+              <span class="play-hint">按钮会请求本地后端</span>
+            </div>
+            <p>
+              完整挖掘流程已经生成了 <code>real-daikon.json</code>。
+              这里现场运行的是最后一步：把 Daikon 原始结果筛成 agent 可读的证据。
+            </p>
+            <pre><code>python codex-skills/daikon-invariant-mining/scripts/invariant_tool.py \
+  --context .../astropy__astropy-16058.real-daikon.json \
+  --target validate_power \
+  --limit 12</code></pre>
+          </div>
+
+          <div class="runner-output">
+            <div class="inline-heading">
+              <h3>Daikon 输出</h3>
+              <button id="run-daikon" class="small-button" type="button">
+                运行 Daikon 工具
+              </button>
+            </div>
+            <div id="daikon-result" class="daikon-result is-waiting">
+              <p>点击按钮会真实执行本地 Daikon skill 工具，并把结果返回到这里。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="codex" class="section">
+        <div class="section-title">
+          <span>4</span>
+          <div>
+            <p class="eyebrow">Codex Result</p>
+            <h2>加入运行时语义证据后 Codex 跑出了什么</h2>
+          </div>
+        </div>
+
+        <div class="artifact-card">
+          <div>
+            <p class="mini-title">Agent-readable 证据包</p>
+            <h3>真正喂给 Codex 的应该更短</h3>
+            <p>
+              原始报告需要压缩成候选条件、优化提示和兜底要求，否则只是把噪声塞进 prompt。
+            </p>
+          </div>
+          <pre><code>[Tool: daikon-invariant-mining]
+Target: validate_power
+Coverage: 374532 observations
+
+Candidate condition:
+- if p is int, validate_power(p) returns p unchanged
+
+Repair hint:
+- consider a guarded direct-return path
+- preserve the original slow path outside the condition
+[/Tool]</code></pre>
+        </div>
+
+        <div class="compare">
+          <article class="card">
+            <h3>Baseline Codex</h3>
+            <p>只给官方 SWE-Perf 任务提示，不加 Daikon 证据。</p>
+            <ul>
+              <li>补丁应用 / 测试运行 / 任务成功：<strong>yes</strong></li>
+              <li>Mean duration: <code>0.01084s -> 0.01001s</code></li>
+              <li>Relative improvement: <strong>7.67%</strong></li>
+            </ul>
+          </article>
+
+          <article class="card highlight">
+            <h3>Codex + Daikon skill</h3>
+            <p>同一个任务，但提示里加入 Daikon skill 生成的运行时语义证据。</p>
+            <ul>
+              <li>补丁应用 / 测试运行 / 任务成功：<strong>yes</strong></li>
+              <li>Mean duration: <code>0.00820s -> 0.00741s</code></li>
+              <li>Relative improvement: <strong>9.61%</strong></li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="note">
+          <strong>另一个观察：</strong>
+          性能优化不只会改变耗时，也可能改变程序运行时表现出来的规律。
+          我们先看了 <code>20</code> 个真实 SWE-Perf 任务，其中 <code>12</code> 个任务
+          可以成功跑完 Daikon 的修改前/修改后对比；在这 <code>12</code> 个里面，
+          有 <code>3</code> 个任务的 Daikon 结果发生了变化。
+          这不表示这些优化是错的，而是说明这种变化需要进一步解释：
+          例如 <code>astropy__astropy-16058</code> 有变化，因为它把
+          <code>validate_power</code> 拆成了“只检查”和“规范化”两个职责；
+          <code>astropy__astropy-13496</code> 没有变化，因为它只是安全地加了缓存，
+          并且没有把缓存写进序列化状态。
+        </div>
+
+        <div class="explain">
+          <div class="inline-heading">
+            <h3>Codex + Daikon skill 的补丁形态</h3>
+            <button class="small-button" data-reveal="patch-meaning" type="button">
+              查看结构
+            </button>
+          </div>
+          <p>
+            它不是简单删除逻辑，而是把一个混合职责函数拆成“快路径”和“慢路径”。
+          </p>
+          <pre><code>def validate_power(p):
+    # 快路径：只做轻量检查
+    if p.__class__ is int or p.__class__ is Fraction:
+        return p
+    ...
+    return p
+
+def sanitize_power(p):
+    # 慢路径：需要规范化表示时再做
+    p = maybe_simple_fraction(p)
+    ...</code></pre>
+          <p>
+            然后只在真正需要“规范化幂次表示”的地方调用
+            <code>sanitize_power</code>。
+          </p>
+          <div id="patch-meaning" class="reveal-box is-hidden">
+            这正好对应性能浪费的结构：常见输入走更便宜的分支；
+            不确定的输入继续走完整处理逻辑。
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      Artifacts:
+      <code>baseline Codex run</code>
+      and
+      <code>Codex + Daikon evidence run</code>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
